@@ -2,13 +2,9 @@
 
 A self-improving bot for Chrome's offline T-Rex game. Paste one file into the DevTools console and it plays the game, learns from every obstacle and crash, tunes its own jump timing, and can learn by watching you play.
 
-![The bot playing Chrome's dino game with See mode on](media/dinobot-see-mode.gif)
+![The bot playing Chrome's dino game with See mode on](media/dinobot-chrome.gif)
 
-▶ **[Full recording (MP4, 5 min)](media/dinobot-see-mode.mp4)** — headless Chrome 155, offline "No internet" page, fresh brain, no human input, 🔍 See mode on the whole time.
-
-Starting from an empty brain, it scored **2,565** on its first run, crashed on a head-height bird at 2:27 ("ducked too late"), moved its duck timing for that bird from 320 to 365 ms, and was at 2,348 with no further crashes when the recording stopped. The GIF above is 0:38–0:58 of the same recording: jumping a low bird, ducking a head-height bird, running under a high bird, cactus jumps, and the switch to night mode.
-
-The recording was made with Playwright driving headless Chrome: the page was taken offline, `dinobot.js` was run on the "No internet" page and the 🔍 See button clicked. Nothing else touched the game.
+▶ **[Watch the full clip (MP4, 1:45)](media/dinobot-chrome.mp4)** — the bot playing in Chrome (dark theme) on the "No internet" page with 🔍 See mode on, going from 597 to 2,629 in one run. The GIF is the first 20 seconds: birds jumped and run under, cactus jumps, and the game's night mode switching on and off.
 
 ### What See mode shows
 
@@ -63,6 +59,16 @@ For each obstacle, about half a second before it arrives, the bot picks one of f
 - **Self-tuning timing.** Each move has its own trigger time per obstacle and speed. After a crash it shifts the trigger past the press that failed; after every clean jump it compares the clearance under the T-Rex's feet on the way in and on the way out and evens them up.
 - **Learning from you.** In 👀 Train mode (or whenever you take over), it records your moves as demonstrations. These count most while the bot has little experience of its own.
 - **Memory.** The brain is saved in `localStorage` where the page allows it. `chrome://dino` doesn't, so there it lives in `window.name`, which survives reloading the tab but not closing it — use **⬇ Brain** to keep it.
+
+### Learning from an empty brain
+
+![The bot learning from an empty brain, See mode on](media/dinobot-see-mode.gif)
+
+▶ **[Full recording (MP4, 5 min)](media/dinobot-see-mode.mp4)** — headless Chrome 155, offline "No internet" page, fresh brain, no human input, 🔍 See mode on the whole time.
+
+Starting from an empty brain, it scored **2,565** on its first run, crashed on a head-height bird at 2:27 ("ducked too late"), moved its duck timing for that bird from 320 to 365 ms, and was at 2,348 with no further crashes when the recording stopped. The GIF above is 0:38–0:58 of that recording: jumping a low bird, ducking a head-height bird, running under a high bird, cactus jumps, and the switch to night mode.
+
+This one was made with Playwright driving headless Chrome: the page was taken offline, `dinobot.js` was run on the "No internet" page and the 🔍 See button clicked. Nothing else touched the game.
 
 ### Running Laya live
 
